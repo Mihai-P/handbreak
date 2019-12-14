@@ -1,0 +1,9 @@
+file:
+  /root/handbrake.sh:
+    exists: true
+    owner: root
+    group: root
+    filetype: file
+package:
+  handbrake-cli:
+    installed: true
