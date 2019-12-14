@@ -25,7 +25,7 @@ To run the container
 docker run --name docker-cron -it registry.gitlab.com/mihai-p/docker-cron
 ```
 
-this will create a container called docker-cron. 
+this will create a container called docker-cron.
 
 PLEASE NOTE THAT RUNNING THE CONTAINER MAY UPDATE THE DDNS IPs.
 
@@ -33,12 +33,6 @@ PLEASE NOTE THAT RUNNING THE CONTAINER MAY UPDATE THE DDNS IPs.
 
 ```console
 docker exec -it docker-cron /bin/bash
-```
-
-or you can just run something like this
-
-```console
-docker exec -it docker-cron bash /root/ddns.sh
 ```
 
 ## Testing the docker container
