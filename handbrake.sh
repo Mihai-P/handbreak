@@ -8,7 +8,7 @@ IFS='
 set -o noglob # disable globbing
 
 SOURCE="/process/"
-PRESET_NAME="Fast 480p30"
+PRESET_NAME="Fast 720p30"
 
 for FILE in `find ${SOURCE} -type f -regextype posix-extended -regex ".*(720p|1080p).*\.(mkv|avi|mp4)" | head -25 | xargs -I filename echo filename`; do
         if [ -e "$FILE" ]; then
@@ -16,7 +16,7 @@ for FILE in `find ${SOURCE} -type f -regextype posix-extended -regex ".*(720p|10
                 echo "processing file ${FILE}"
                 FILENAME=$(basename -- "${FILE}")
                 BASEPATH=$(dirname "${FILE}")
-                NEWNAME=`echo "$FILENAME" | sed -e 's/720p/480p/' -e 's/1080p/480p/'`
+                NEWNAME=`echo "$FILENAME" | sed -e 's/1080p/720p/'`
                 NEWFILE="${BASEPATH}/${NEWNAME}"
                 echo "Converting ${FILE} to ${NEWFILE}"
                 
