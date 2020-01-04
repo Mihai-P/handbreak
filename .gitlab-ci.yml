@@ -27,9 +27,9 @@ build:
 test:
   stage: test
   before_script:
-    - apk add --update curl && rm -rf /var/cache/apk/*  
-  script:
+    - apk add --update curl && rm -rf /var/cache/apk/*
     - curl -fsSL https://goss.rocks/install | sh
+  script:
     - GOSS_PATH=/usr/local/bin/goss; dgoss run -it $CONTAINER_TEST_IMAGE
 
 release-image:
