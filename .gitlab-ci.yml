@@ -3,10 +3,10 @@ services:
   - docker:19.03.1-dind
 
 stages:
-  - build
+  # - build
   - test
-  - release
-  - deploy
+  # - release
+  # - deploy
 
 variables:
   # Use TLS https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#tls-enabled
