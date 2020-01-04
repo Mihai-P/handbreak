@@ -18,31 +18,32 @@ variables:
 before_script:
   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-build:
-  stage: build
-  script:
-    - docker build --pull -t $CONTAINER_TEST_IMAGE .
-    - docker push $CONTAINER_TEST_IMAGE
+# build:
+#   stage: build
+#   script:
+#     - docker build --pull -t $CONTAINER_TEST_IMAGE .
+#     - docker push $CONTAINER_TEST_IMAGE
 
 test:
   stage: test
   variables:
     # GOSS_FILES_PATH: .misc/goss
-    GOSS_FILES_STRATEGY: cp  
-  script:
-    - apk add --update curl && rm -rf /var/cache/apk/*
+    GOSS_FILES_STRATEGY: cp
+  before_script:
+    - apk add --update curl
     - curl -fsSL https://goss.rocks/install | sh
-    - docker pull "$CONTAINER_TEST_IMAGE"
+  script:
+    - docker build -t $CONTAINER_TEST_IMAGE .
     - /usr/local/bin/dgoss run -it $CONTAINER_TEST_IMAGE
 
-release-image:
-  stage: release
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_RELEASE_IMAGE
-  only:
-    - master
+# release-image:
+#   stage: release
+#   script:
+#     - docker pull $CONTAINER_TEST_IMAGE
+#     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
+#     - docker push $CONTAINER_RELEASE_IMAGE
+#   only:
+#     - master
 
 # deploy:
 #   stage: deploy
