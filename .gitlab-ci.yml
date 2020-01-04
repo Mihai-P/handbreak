@@ -26,11 +26,13 @@ build:
 
 test:
   stage: test
+  variables:
+    # GOSS_FILES_PATH: .misc/goss
+    GOSS_FILES_STRATEGY: cp  
   script:
     - apk add --update curl && rm -rf /var/cache/apk/*
     - curl -fsSL https://goss.rocks/install | sh
     - docker pull "$CONTAINER_TEST_IMAGE"
-    - export GOSS_FILES_STRATEGY=cp
     - dgoss run -it $CONTAINER_TEST_IMAGE
 
 release-image:
