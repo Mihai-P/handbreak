@@ -26,7 +26,6 @@ build:
 
 test:
   stage: test
-  before_script:
   script:
     - apk add --update curl && rm -rf /var/cache/apk/*
     - curl -fsSL https://goss.rocks/install | sh
