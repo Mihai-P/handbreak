@@ -35,7 +35,6 @@ test:
   script:
     - docker build -t $CONTAINER_TEST_IMAGE .
     - export GOSS_FILES_STRATEGY=cp
-    - ls -la /goss
     - dgoss run -it $CONTAINER_TEST_IMAGE
 
 # release-image:
